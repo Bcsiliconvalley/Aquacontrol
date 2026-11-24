@@ -1,0 +1,2 @@
+fecha,hora,operario,id_medidor,sector,lect_ant,lect_actual,consumo_m3,consumo_L,observaciones
+2026-11-24,07:00,Carlos Méndez,AC-M001,Sector Norte,800,850,50,50000,Lectura normal en números negros

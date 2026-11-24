@@ -1,0 +1,7 @@
+Fecha,ID Medidor,Sector,Vol Extraído m3,Vol Consumido m3,Vol Reutilizado m3,Pérdida m3,Costo m3,Consumo Usuario L/dia
+2026-11-19,AC-M001,Sector Norte,220,170,30,50,1.25,180
+2026-11-20,AC-M002,Sector Centro,210,165,28,45,1.25,178
+2026-11-21,AC-M003,Sector Sur,205,160,25,45,1.25,182
+2026-11-22,AC-M004,Sector Este,215,160,35,55,1.25,185
+2026-11-23,AC-M005,Sector Oeste,200,155,32,45,1.25,176
+2026-11-24,AC-M006,Sector Rural,150,150,10,0,1.25,179

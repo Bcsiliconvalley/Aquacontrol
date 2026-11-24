@@ -1,0 +1,22 @@
+{
+    "usernames": {
+        "admin": {
+            "name": "Supervisor General",
+            "password": "$2b$12$l8YtP0vmP6HhjEhAjObal.FRS66NHGf4lgow2.k5xGABb6YkKFq6i",
+            "email": "agua@aquacontrol.com",
+            "role": "Administrador"
+        },
+        "operador1": {
+            "name": "Carlos M\u00e9ndez",
+            "password": "$2b$12$06dd8XpDRmFPgIPJVi2r/.JfSc03fk8/DkbCvuNcMhnGcKu58EON.",
+            "email": "operaciones@aquacontrol.com",
+            "role": "Operador"
+        },
+        "ambiental1": {
+            "name": "Ing. Laura G\u00f3mez",
+            "password": "$2b$12$D7NkRjs3//jJuw5guuhl.efnnMITE4awH1fyDRJV.2cIG/mXiL7ou",
+            "email": "ambiental@aquacontrol.com",
+            "role": "\u00c1rea Ambiental"
+        }
+    }
+}

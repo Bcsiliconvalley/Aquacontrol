@@ -1,0 +1,2 @@
+fecha,hora,id_medidor,ubicacion,vol_registrado_m3,vol_esperado_m3,diferencia_m3,diferencia_L,senal_tipo,checklist,accion_tomada,estado
+2026-11-24,03:15,AC-M004,Sector Este,215,160,55,55000,Consumo anómalo (Nocturno),Tuberías: Grietas/goteos | Válvulas: Cierres,Cierre preventivo de válvula secundaria y activación de reutilización,En proceso
