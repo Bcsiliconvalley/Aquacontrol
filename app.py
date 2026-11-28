@@ -97,7 +97,6 @@ def cargar_usuarios():
         with open(USERS_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     else:
-        # Hasher compatible con streamlit-authenticator
         try:
             hash_admin = stauth.Hasher.hash("123")
             hash_op = stauth.Hasher.hash("456")
@@ -182,7 +181,6 @@ def modulo_dashboard():
     st.subheader("📊 Tablero General y 6 KPIs (Formato 3 - F-CMK-03)")
     st.write("Monitoreo en tiempo real: **Agua del Valle S.A. de C.V.** | Meta a 3 años: **Reducir 30% extracción y pérdida de agua**.")
 
-    # Métricas principales actuales vs Meta 3 años
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Agua Extraída (Hoy)", "1,200,000 L/día", "Meta 3 años: 840,000 L (-30%)", delta_color="inverse")
     c2.metric("Agua Utilizada", "960,000 L/día", "80% aprovechamiento")
@@ -203,7 +201,6 @@ def modulo_dashboard():
 
     st.divider()
 
-    # Importación directa de Formato 3 (CSV / XLSX)
     with st.expander("📥 Importar Concentrado Mensual (Formato 3 - CSV / XLSX)"):
         archivo_f3 = st.file_uploader("Sube el archivo exportado por Supervisión:", type=["csv", "xlsx"])
         if archivo_f3 is not None:
@@ -256,7 +253,6 @@ def modulo_captura(nombre_usuario):
     c_res1.metric("Consumo del Día (m³)", f"{consumo_m3:,} m³")
     c_res2.metric("Consumo en Litros (DATO CLAVE)", f"{consumo_L:,} L")
 
-    # Detección temprana automática si es horario nocturno o consumo alto
     es_nocturno = hora.hour < 6 or hora.hour >= 22
     if consumo_m3 < 0:
         c_res3.error("❌ La lectura actual no puede ser menor a la anterior.")
@@ -389,7 +385,16 @@ def modulo_mapa_sectores():
     st.subheader("🗺️ Mapa de Pozos, Medidores y Pérdidas por Sector")
     st.write("Ubicación en tiempo real de los medidores (`AC-M001` a `AC-M006`) para identificar dónde se pierde el agua.")
 
-    m = folium.Map(location=[32.5149, -117.0382], zoom_start=12, tiles="CartoDB dark_matter")
+    # OpenStreetMap does not require a Carto API key; CSS filter keeps the dark aesthetic
+    st.markdown("""
+    <style>
+        .leaflet-tile-pane {
+            filter: invert(92%) hue-rotate(180deg) brightness(92%) contrast(95%);
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    m = folium.Map(location=[32.5149, -117.0382], zoom_start=12, tiles="OpenStreetMap")
     sectores = [
         {"id": "AC-M001 - Sector Norte", "coord": [32.5320, -117.0250], "estado": "Normal (50,000 L/día)", "color": "blue"},
         {"id": "AC-M002 - Sector Centro", "coord": [32.5180, -117.0380], "estado": "Normal (45,000 L/día)", "color": "blue"},
@@ -556,7 +561,6 @@ elif authentication_status:
         st.write(f"Rol: **{user_role}**")
         st.divider()
 
-        # Menú organizado por rol y flujo de trabajo
         opciones_menu = ["📊 Dashboard y 6 KPIs", "📱 Captura Diaria (F-1)", "🚨 Alertas y Prevención (F-2)", "🗺️ Mapa de Sectores"]
         if user_role in ["Área Ambiental", "Administrador"]:
             opciones_menu.extend(["📄 Reportes ISO 14001", "🎓 Capacitación y Config."])
@@ -581,3 +585,5 @@ elif authentication_status:
         modulo_reportes_iso()
     elif opcion == "🎓 Capacitación y Config.":
         modulo_capacitacion_config()
+
+
